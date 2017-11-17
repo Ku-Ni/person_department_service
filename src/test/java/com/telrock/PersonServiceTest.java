@@ -8,10 +8,11 @@
  */
 package com.telrock;
 
+import static org.junit.Assert.*;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,13 +46,28 @@ public class PersonServiceTest
 
 		Person p2 = personService.save(p1);
 
-		Assert.assertNotNull("The returned object can't be null", p2);
-		Assert.assertNotNull("The id can't be null", p2.getId());
-		Assert.assertTrue("The id has to be greater than 0", p2.getId() > 0);
-		Assert.assertEquals(name, p2.getName());
+		assertNotNull("The returned object can't be null", p2);
+		assertNotNull("The id can't be null", p2.getId());
+		assertTrue("The id has to be greater than 0", p2.getId() > 0);
+		assertEquals(name, p2.getName());
 	}
 
 	// --------------------------------------------------------------------------------------------------
 
 	// Implement other tests
+	
+	@Test
+	public final void testGetOrCreateDepartment() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testGetDefaultDepartment() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testFindDepartmentsInArea() {
+		fail("Not yet implemented"); // TODO
+	}
 }
