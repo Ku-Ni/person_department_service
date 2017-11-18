@@ -36,7 +36,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 		// Validate input parameters
 		if (!StringUtils.hasText(departmentName) || !StringUtils.hasText(area)) {
-			String errorMessage = "Both supplied department name ["+departmentName+"] and area ["+area+"] must be populated";
+			String errorMessage = "Department fields must be populated. "+new Department(departmentName,area);
 			log.error(errorMessage);
 			throw new IllegalArgumentException("errorMessage");
 		}
@@ -49,20 +49,20 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 		// Validate results error when more than one department matched
 		if (result.size() > 1) {
-			String errorMessage = "Supplied values for department name ["+departmentName+"] and area ["+area+"] returned "+result.size()+" results";
+			String errorMessage = new Department(departmentName,area) + " matched "+result.size()+" results";
 			log.error(errorMessage);
 			throw new IllegalArgumentException("errorMessage");
 		}
 
 		// Return matched department
 		if (result.size() == 1) {
-			log.debug("Found department [name={},area={}]", departmentName, area);
+			log.debug("Retrieved {}", result.get(0));
 			return result.get(0);
 		} 
 
 		// No matches, create new department
-		log.debug("Creating new department [name={},area={}]", departmentName, area);
 		Department department = new Department(departmentName, area);
+		log.debug("Creating {}", department);
 		em.persist(department);
 		em.flush();
 
