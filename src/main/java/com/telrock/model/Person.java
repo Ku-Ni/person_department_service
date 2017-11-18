@@ -1,10 +1,10 @@
 package com.telrock.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -30,7 +30,7 @@ public class Person
 	@Column
 	private String surname;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Department department;
 
 	public Person(){}
