@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.telrock.model.DefaultDepartment;
 import com.telrock.model.Department;
 
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
@@ -34,7 +35,7 @@ public class DepartmentServiceTest {
 	@Autowired
 	DepartmentService departmentService;
 
-	private final Department defaultDepartment = new Department("DEFAULT_NAME", "DEFAULT_AREA");
+	private final Department defaultDepartment = new Department(DefaultDepartment.DEFAULT_NAME.toString(), DefaultDepartment.DEFAULT_AREA.toString());
 	private final Department[] data = {
 			new Department("TestDepartment1", "Area1"),	new Department("TestDepartment2.1", "Area2"),
 			new Department("TestDepartment2.2", "Area2"), new Department("TestDepartment3.1", "Area3"),
@@ -145,7 +146,10 @@ public class DepartmentServiceTest {
 	public final void testGetDefaultDepartment() {
 		Department expected = defaultDepartment;
 		Department actual = departmentService.getDefaultDepartment();
-		assertEquals(expected, actual);
+		
+		assertEquals("Departments not equal", expected, actual);
+		assertEquals("Names not equal", expected.getName(), actual.getName());
+		assertEquals("Areas not equal", expected.getArea(), actual.getArea());
 	}
 
 

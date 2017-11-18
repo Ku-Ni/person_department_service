@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -19,7 +20,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import java.util.Objects;
 
 @Entity
-@NamedQuery(name="findDepartmentByNameAndArea", query="SELECT d FROM Department d WHERE d.name = :name AND d.area = :area")
+@NamedQueries({
+	@NamedQuery(name="findDepartmentByNameAndArea", query="SELECT d FROM Department d WHERE d.name = :name AND d.area = :area")
+	,@NamedQuery(name="findDepartmentByArea", query="SELECT d FROM Department d WHERE d.area = :area")
+})
 public class Department
 {
 	@Id
