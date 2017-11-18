@@ -6,7 +6,7 @@
  * $Date:  $ 
  * 
  */
-package com.telrock;
+package com.telrock.dao;
 
 import static org.junit.Assert.*;
 
@@ -55,19 +55,4 @@ public class PersonServiceTest
 	// --------------------------------------------------------------------------------------------------
 
 	// Implement other tests
-	
-	@Test
-	public final void testGetOrCreateDepartment() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testGetDefaultDepartment() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public final void testFindDepartmentsInArea() {
-		fail("Not yet implemented"); // TODO
-	}
 }
