@@ -18,6 +18,7 @@ import javax.persistence.NamedQuery;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import java.util.Objects;
+import org.apache.commons.lang3.builder.CompareToBuilder;
 
 @Entity
 @NamedQueries({
@@ -25,7 +26,7 @@ import java.util.Objects;
 	,@NamedQuery(name="findDepartmentByArea", query="SELECT d FROM Department d WHERE d.area = :area")
 })
 public class Department
-{
+implements Comparable<Department> {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -90,4 +91,11 @@ public class Department
 		return Objects.hash(id);
 	}
 
+	@Override
+	public int compareTo(final Department other) {
+		return new CompareToBuilder().append(id, other.id).append(name, other.name).append(area, other.area)
+				.toComparison();
+	}
+
+	
 }
