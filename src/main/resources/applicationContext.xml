@@ -13,13 +13,19 @@
 	<context:annotation-config />
 
 	<context:component-scan base-package="com.telrock" />
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:database_configuration.properties</value>
+		</property>
+	</bean>
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.h2.Driver" />
-		<property name="url" value="jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000" />
-		<property name="username" value="sa" />
-		<property name="password" value="" />
+		<property name="driverClassName"><value>${database.driver.classname}</value></property>
+		<property name="url"><value>${database.connection.url}</value></property>
+		<property name="username"><value>${database.connection.username}</value></property>
+		<property name="password"><value>${database.connection.password}</value></property>
 	</bean>
 
 	<bean id="entityManagerFactory"
@@ -31,7 +37,7 @@
 		</property>
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+				<prop key="hibernate.dialect">${database.hibernate.dialect}</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">false</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
